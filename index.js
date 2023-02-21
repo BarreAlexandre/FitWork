@@ -8,7 +8,7 @@ const app = express();
 import router from './app/router.js';
 
 app.use(router);
-
+app.use(express.json());
 app.listen(port, () => {
     console.log(`Server ready: http://localhost:${port}`);
 });
