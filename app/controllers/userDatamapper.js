@@ -48,10 +48,10 @@ export default {
             res.json('Adresse email déjà utilisée.');
         }
             const saltRounds=12;
-            const hash = await bcrypt.hash(user.password,saltRounds);
+            // const hash = await bcrypt.hash(user.password,saltRounds);
             // user.password=NULL;
             const sqlQuery =`INSERT INTO "user" ("firstname","lastname","email","birth_date","password","role_id") VALUES ($1,$2,$3,$4,$5,$6);`;    
-            const values=[user.firstname, user.lastname,user.email,user.birth_date,hash,2];
+            const values=[user.firstname, user.lastname,user.email,user.birth_date,user.hash,2];
         try{
             await dbClient.query(sqlQuery,values);
             return 'ok';

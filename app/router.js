@@ -1,7 +1,7 @@
 import Router from 'express';
 import loginController from './controllers/loginController.js';
-import userController from './controllers/userController.js';
-import categoryController from './controllers/categoryController.js';
+import userDatamapper from './controllers/userDatamapper.js';
+import categoryDatamapper from './controllers/categoryDatamapper.js';
 
 const router = Router();
 /**
@@ -12,7 +12,7 @@ const router = Router();
  * @return {user} 200 - un utilisateur
  * @return {object} 500 - Unexpected error
  */
-router.get('/user/:id', userController.getUserById);
+router.get('/user/:id', userDatamapper.getUserById);
 /**
  * PATCH /api/user/{id}
  * @summary modifie un utilisateur
@@ -21,7 +21,7 @@ router.get('/user/:id', userController.getUserById);
  * @return {user} 200 - un utilisateur
  * @return {object} 500 - Unexpected error
  */
-router.patch('/user/:id', userController.updateUser);
+router.patch('/user/:id', userDatamapper.updateUser);
 /**
  * DELETE /api/user/{id}
  * @summary Supprime un utilisateur
@@ -30,7 +30,7 @@ router.patch('/user/:id', userController.updateUser);
  * @return {"done"} 200 - notification
  * @return {object} 500 - Unexpected error
  */
-router.delete('/user/:id', userController.deleteUser);
+router.delete('/user/:id', userDatamapper.deleteUser);
 /**
  * POST /api/user/
  * @summary crée un utilisateur
@@ -39,7 +39,7 @@ router.delete('/user/:id', userController.deleteUser);
  * @return {user} 200 - un utilisateur
  * @return {object} 500 - Unexpected error
  */
-router.post('/user', userController.createUser);
+router.post('/user', userDatamapper.createUser);
 /**
  * POST /api/login
  * @summary Connecte un utilisateur
@@ -58,6 +58,6 @@ router.post('/login', loginController.checkLogin);
  * @return {json} 200 - fichier de retour
  * @return {object} 500 - Unexpected error
  */
-router.get('/categories', categoryController.getCategories);
+router.get('/categories', categoryDatamapper.getAllCategories);
 
 export default router;

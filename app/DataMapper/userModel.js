@@ -64,11 +64,10 @@ export default{
         catch(error){
             console.error(error); 
         }
-        return newUser;
         },
 
     async update (userId, body){
-        console.log('dans le model/update');
+        
         const sqlQuery = `UPDATE "user" SET
                         "firstname" = COALESCE($1, firstname),
                         "lastname" = COALESCE($2, lastname),
