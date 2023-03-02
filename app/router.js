@@ -78,9 +78,15 @@ router.get('/category/:id', articleController.getAllArticles);
  */
 router.get('/article/:id', articleController.getOneArticle);
 
-
+/**
+ * POST /api/article/{id}
+ * @summary supprime un article
+ * @tags article
+ * @param {number} id.path- id de l'article
+ * @return {json} 200 - fichier de retour
+ * @return {object} 500 - Unexpected error
+ */
 router.delete('/article/:id', articleController.deleteOneArticle);
-
 
 /**
  * POST /article/{id}
