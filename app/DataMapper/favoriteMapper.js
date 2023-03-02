@@ -3,7 +3,7 @@ import dbClient from '../service/dbClient.js'
 export default{
     async getFavorite (id){
         let result;
-        const sqlQuery= `SELECT article_id, title, description, "time", image, "type", "name" 
+        const sqlQuery= `SELECT favorite.id, article_id, title, description, "time", image, "type", "name" 
         FROM favorite  
         JOIN article ON article.id = article_id 
         JOIN category ON category.id=category_id
@@ -22,12 +22,12 @@ export default{
 
         async addToFavorite (user_id,article_id) {
         
-            const sqlQuery = `INSERT INTO "favorite" (user_id, article_id)
+            const sqlQuery = `INSERT INTO favorite (user_id, article_id)
                             VALUES ($1,$2) RETURNING *;`;
             const values=[user_id,article_id];
             try{
-                const response = await dbClient.query(sqlQuery,values);
-                return response.rows[0];
+                await dbClient.query(sqlQuery,values);
+                return 'ajouté';
             }
             catch(error) {
                 console.log('addToFavorite SQL -error : ', error);

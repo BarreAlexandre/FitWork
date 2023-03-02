@@ -21,9 +21,8 @@ export default{
         const articleId = req.params.id
         try{
             const postArticleInFavorite = await favoriteMapper.addToFavorite(userId,articleId);
-            console.log(postArticleInFavorite)
             if(!postArticleInFavorite){
-                throw "Impossible de rajouter l'article au Favoris."
+                throw "L'article est déjà présent dans Favoris."
             }
                 res.json(postArticleInFavorite);
             }
@@ -36,8 +35,9 @@ export default{
     async deleteArticleFavorite(req,res,next){
         try{
             const deleted = await favoriteMapper.deleteFromFavorite(req.params.id);
-            if(!deleted){
-                throw "Impossible de supprimer l'article au Favoris."
+            if(deleted){
+                console.log( 'deleted : ',deleted)
+                throw "Impossible de supprimer l'article des Favoris."
             }
                 res.json("deleted");
             }
