@@ -4,7 +4,11 @@ import  dbClient  from"../service/dbClient.js";
 export default{
     async getAll(id){
         let result
-        const sqlQuery= `SELECT * FROM "article" WHERE category_id=$1;`;
+        const sqlQuery= `SELECT 
+        article.id, title, description, time, "type", image
+        firstname AS author_firstname, lastname AS author_lastname 
+        FROM article  
+        JOIN "user" ON "user".id=user_id WHERE category_id=$1;`;
         const value= [id];
         try {
             const response = await dbClient.query(sqlQuery,value);
@@ -39,7 +43,13 @@ export default{
     },
     
     async getOne (id){
-        const sqlQuery= `SELECT * FROM "article" WHERE id=$1;`;
+        const sqlQuery= `SELECT 
+        article.id, title, description, time, "type", image,
+        "name" AS category, 
+        firstname AS author_firstname, lastname AS author_lastname 
+        FROM article 
+        JOIN category ON category.id=category_id 
+        JOIN "user" ON "user".id=user_id WHERE article.id=$1;`;
         const value= [id];
         try {
             const response = await dbClient.query(sqlQuery,value);
