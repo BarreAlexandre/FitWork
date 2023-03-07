@@ -6,12 +6,16 @@ export default {
             if (!user){
                 res.json(`problème d'identité`)
             }
-            console.log(`token validé !`, user);
             next();
         }
         catch (error) {
             console.log('checkToken - error : ',error);
             next(error);
+        }
+    },
+    checkRole(req,_,next){
+        if (toto){
+
         }
     }
 };

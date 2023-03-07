@@ -25,11 +25,12 @@ export default {
             if (!isValidPassword){
                 throw'Email ou mot de passe incorrect';
             };
-            const token = jwt.sign({email:foundUser.email, user_id:foundUser.id}, process.env.SESSION_SECRET);
+            const token = jwt.sign({email:foundUser.email, user_id:foundUser.id, role_id:foundUser.role_id}, process.env.SESSION_SECRET);
             const firstname=foundUser.firstname;
             const id = foundUser.id;
             const role = foundUser.role;
             result ={logged:true,id,firstname,role,token};
+            console.log(result);
             return result
         }
         catch(error){
