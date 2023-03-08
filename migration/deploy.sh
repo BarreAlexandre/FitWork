@@ -7,4 +7,5 @@ export PGHOST=localhost
 #sqitch deploy 4.cascade_article
 #sqitch deploy 5.add_program_id
 #sqitch deploy 6.add_favorite_id
-sqitch deploy 7.populate2
+#sqitch deploy 7.populate2
+sqitch deploy 8.labelsName
