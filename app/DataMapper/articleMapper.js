@@ -21,11 +21,13 @@ export default{
     async getAllArticles(){
         const sqlQuery = `SELECT 
         article.id, title, description, time, "type", image,
-        "name" AS category, 
+        category."name" AS category, "label"."name" AS "label", user_id,
         firstname AS author_firstname, lastname AS author_lastname 
         FROM article 
         JOIN category ON category.id=category_id 
-        JOIN "user" ON "user".id=user_id;`
+        JOIN "user" ON "user".id=user_id
+        JOIN "article_has_label" ON "article".id = article_id
+        JOIN "label" ON "label".id =label_id;`
         try{
             const articles = await dbClient.query(sqlQuery);
             if(!articles){
